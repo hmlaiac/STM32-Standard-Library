@@ -1,0 +1,107 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.23.0.0
+Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Lai Thomas, Hong Kong University of Science and Technology, LIC=32B12-9A7DX-FWP2N-YNT04-H9EMH-CYG8B
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.23
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 4 (build 422)
+Assembler:       Armasm.exe V5.06 update 4 (build 422)
+Linker/Locator:  ArmLink.exe V5.06 update 4 (build 422)
+Library Manager: ArmAr.exe V5.06 update 4 (build 422)
+Hex Converter:   FromElf.exe V5.06 update 4 (build 422)
+CPU DLL:         SARMCM3.DLL V5.23
+Dialog DLL:      DCM.DLL V1.15.0.0
+Target DLL:      CMSIS_AGDI.dll V1.27.5.0
+Dialog DLL:      TCM.DLL V1.27.0.0
+ 
+<h2>Project:</h2>
+C:\Users\Thomas\Desktop\STM32_Project\24_Fatfs\Project\template.uvprojx
+Project File Date:  07/09/2020
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 4 (build 422)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'Target 1'
+compiling diskio.c...
+..\User\fatfs\diskio.c(34): error:  #20: identifier "ATA" is undefined
+  	case ATA :
+..\User\fatfs\diskio.c(35): warning:  #223-D: function "ATA_disk_status" declared implicitly
+  		result = ATA_disk_status();
+..\User\fatfs\diskio.c(41): error:  #20: identifier "MMC" is undefined
+  	case MMC :
+..\User\fatfs\diskio.c(42): warning:  #223-D: function "MMC_disk_status" declared implicitly
+  		result = MMC_disk_status();
+..\User\fatfs\diskio.c(48): error:  #20: identifier "USB" is undefined
+  	case USB :
+..\User\fatfs\diskio.c(49): warning:  #223-D: function "USB_disk_status" declared implicitly
+  		result = USB_disk_status();
+..\User\fatfs\diskio.c(31): warning:  #550-D: variable "result"  was set but never used
+  	int result;
+..\User\fatfs\diskio.c(72): error:  #20: identifier "ATA" is undefined
+  	case ATA :
+..\User\fatfs\diskio.c(73): warning:  #223-D: function "ATA_disk_initialize" declared implicitly
+  		result = ATA_disk_initialize();
+..\User\fatfs\diskio.c(79): error:  #20: identifier "MMC" is undefined
+  	case MMC :
+..\User\fatfs\diskio.c(80): warning:  #223-D: function "MMC_disk_initialize" declared implicitly
+  		result = MMC_disk_initialize();
+..\User\fatfs\diskio.c(86): error:  #20: identifier "USB" is undefined
+  	case USB :
+..\User\fatfs\diskio.c(87): warning:  #223-D: function "USB_disk_initialize" declared implicitly
+  		result = USB_disk_initialize();
+..\User\fatfs\diskio.c(69): warning:  #550-D: variable "result"  was set but never used
+  	int result;
+..\User\fatfs\diskio.c(113): error:  #20: identifier "ATA" is undefined
+  	case ATA :
+..\User\fatfs\diskio.c(116): warning:  #223-D: function "ATA_disk_read" declared implicitly
+  		result = ATA_disk_read(buff, sector, count);
+..\User\fatfs\diskio.c(122): error:  #20: identifier "MMC" is undefined
+  	case MMC :
+..\User\fatfs\diskio.c(125): warning:  #223-D: function "MMC_disk_read" declared implicitly
+  		result = MMC_disk_read(buff, sector, count);
+..\User\fatfs\diskio.c(131): error:  #20: identifier "USB" is undefined
+  	case USB :
+..\User\fatfs\diskio.c(134): warning:  #223-D: function "USB_disk_read" declared implicitly
+  		result = USB_disk_read(buff, sector, count);
+..\User\fatfs\diskio.c(110): warning:  #550-D: variable "result"  was set but never used
+  	int result;
+..\User\fatfs\diskio.c(162): error:  #20: identifier "ATA" is undefined
+  	case ATA :
+..\User\fatfs\diskio.c(165): warning:  #223-D: function "ATA_disk_write" declared implicitly
+  		result = ATA_disk_write(buff, sector, count);
+..\User\fatfs\diskio.c(171): error:  #20: identifier "MMC" is undefined
+  	case MMC :
+..\User\fatfs\diskio.c(174): warning:  #223-D: function "MMC_disk_write" declared implicitly
+  		result = MMC_disk_write(buff, sector, count);
+..\User\fatfs\diskio.c(180): error:  #20: identifier "USB" is undefined
+  	case USB :
+..\User\fatfs\diskio.c(183): warning:  #223-D: function "USB_disk_write" declared implicitly
+  		result = USB_disk_write(buff, sector, count);
+..\User\fatfs\diskio.c(159): warning:  #550-D: variable "result"  was set but never used
+  	int result;
+..\User\fatfs\diskio.c(210): error:  #20: identifier "ATA" is undefined
+  	case ATA :
+..\User\fatfs\diskio.c(216): error:  #20: identifier "MMC" is undefined
+  	case MMC :
+..\User\fatfs\diskio.c(222): error:  #20: identifier "USB" is undefined
+  	case USB :
+..\User\fatfs\diskio.c(207): warning:  #177-D: variable "result"  was declared but never referenced
+  	int result;
+..\User\fatfs\diskio.c: 17 warnings, 15 errors
+".\Objects\template.axf" - 15 Error(s), 17 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.3.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Target not created.
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
