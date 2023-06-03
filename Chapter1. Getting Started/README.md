@@ -1,6 +1,6 @@
 # Adding hex file
 
-We need to add `starup_stm32f10x_hd.s` to the project according to the models of micro-controllers. This file is written
+We need to add `startup_stm32f10x_hd.s` to the project according to the models of micro-controllers. This file is written
 in assembly language which is used to set up the memory pointer and system clock etc.
 
 ## B. Model References
