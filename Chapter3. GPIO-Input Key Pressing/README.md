@@ -151,3 +151,5 @@ TTL Schmitt Trigger:
 ![img_4.png](img_4.png)
 
 Youtube Video Explanation: https://www.youtube.com/watch?v=Nrp8OgQLAlw
+
+
