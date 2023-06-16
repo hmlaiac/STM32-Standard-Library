@@ -77,11 +77,21 @@ Pull up & Pull down:
 ![img_1.png](img_1.png)
 
 Example of Pull down circuit when pressing the key:
-![img_3.png](img_3.png)
-
+![img_5.png](img_5.png)
 Floating VS Pull Up/Down:
 
 Floating isn't a stable signal because it comes from the noise of the environment. Pull Up/Down is a stable signal
+
+Table:
+
+| Input Mode | Button State | Key Input Source | Read |
+|------------|--------------|------------------|------|
+| Floating   | Press        | GND              | 0    |
+| Floating   | Release      | GND              | 1    |
+| Pull Down  | Press        | Vcc              | 1    |
+| Pull Down  | Release      | Vcc              | 0    |
+| Pull Up    | Press        | GND              | 0    |
+| Pull Up    | Release      | GND              | 1    |
 
 ### B2.3 Key scan:
 
@@ -135,6 +145,7 @@ example, you can test the LED, key, buzzer, etc. one by one and save the codes i
 design the embedded system, you can easily find references!
 
 # D. Extra Knowledge
+
 TTL Schmitt Trigger:
 ![img_4.png](img_4.png)
 
