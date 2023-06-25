@@ -25,7 +25,7 @@ void HSE_SetSysClk(uint32_t RCC_PLLMulx){
 void HSI_SetSysClk(uint32_t RCC_PLLMulx){
 	//Reset the clock
 	RCC_DeInit();
-	RCC_HSEConfig(RCC_HSE_ON);
+	RCC_HSEConfig(RCC_HSE_OFF);
 	if(RCC_WaitForHSEStartUp()==SUCCESS){
 		FLASH_PrefetchBufferCmd(FLASH_PrefetchBuffer_Enable);
 		FLASH_SetLatency(FLASH_Latency_2);
