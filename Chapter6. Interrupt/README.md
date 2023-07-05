@@ -70,3 +70,147 @@ typedef enum
 
 EXTI_Trigger:
 
+Interruption can be triggered by the rising edge, falling edge, or even both rising and falling edge of signal.
+
+This is an example of rising edge:
+
+![img_1.png](img_1.png)
+
+Actually rising and falling registers are seperated into two parts, so we can call them together
+by `EXTI_Trigger_Rising_Falling`.
+
+![img_2.png](img_2.png)
+
+Reference codes:
+
+```c
+typedef enum
+{
+  EXTI_Trigger_Rising = 0x08,
+  EXTI_Trigger_Falling = 0x0C,  
+  EXTI_Trigger_Rising_Falling = 0x10
+}EXTITrigger_TypeDef;
+```
+
+## B2. NVIC Settings
+
+Refer to `exti/bsp_exti.c`:
+
+```c
+void NVIC_Config(void){
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
+	NVIC_InitTypeDef NVICStuctInit;
+	NVICStuctInit.NVIC_IRQChannel = EXTI0_IRQn;
+	NVICStuctInit.NVIC_IRQChannelPreemptionPriority = 1;
+	NVICStuctInit.NVIC_IRQChannelSubPriority = 1;
+	NVICStuctInit.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVICStuctInit);
+}
+```
+
+In this case we have 1 bit for pre-emption priority and 3 bits for subpriority.
+
+### B2.1 NVIC_PriorityGroupConfig
+
+```text
+This parameter can be one of the following values:
+
+@arg NVIC_PriorityGroup_0: 0 bits for pre-emption priority
+
+4 bits for subpriority
+
+@arg NVIC_PriorityGroup_1: 1 bits for pre-emption priority
+
+3 bits for subpriority
+
+@arg NVIC_PriorityGroup_2: 2 bits for pre-emption priority
+
+2 bits for subpriority
+
+@arg NVIC_PriorityGroup_3: 3 bits for pre-emption priority
+
+1 bits for subpriority
+
+@arg NVIC_PriorityGroup_4: 4 bits for pre-emption priority
+
+0 bits for subpriority
+```
+
+### B2.2 NVIC_InitTypeDef
+
+```c
+typedef struct
+{
+  uint8_t NVIC_IRQChannel;                    /*!< Specifies the IRQ channel to be enabled or disabled.
+                                                   This parameter can be a value of @ref IRQn_Type 
+                                                   (For the complete STM32 Devices IRQ Channels list, please
+                                                    refer to stm32f10x.h file) */
+
+  uint8_t NVIC_IRQChannelPreemptionPriority;  /*!< Specifies the pre-emption priority for the IRQ channel
+                                                   specified in NVIC_IRQChannel. This parameter can be a value
+                                                   between 0 and 15 as described in the table @ref NVIC_Priority_Table */
+
+  uint8_t NVIC_IRQChannelSubPriority;         /*!< Specifies the subpriority level for the IRQ channel specified
+                                                   in NVIC_IRQChannel. This parameter can be a value
+                                                   between 0 and 15 as described in the table @ref NVIC_Priority_Table */
+
+  FunctionalState NVIC_IRQChannelCmd;         /*!< Specifies whether the IRQ channel defined in NVIC_IRQChannel
+                                                   will be enabled or disabled. 
+                                                   This parameter can be set either to ENABLE or DISABLE */   
+} NVIC_InitTypeDef;
+```
+
+NVIC_IRQChannel:
+
+```c
+EXTI0_IRQn                  = 6,      /*!< EXTI Line0 Interrupt 
+```
+
+# C. Add Interrupt Handler
+
+Refer to `stm32f10x_it.c`:
+
+```c
+void EXTI0_IRQHandler(void){
+	if(EXTI_GetITStatus(EXTI_Line0)!=RESET){
+		LED_Toggle;
+	}
+	EXTI_ClearITPendingBit(EXTI_Line0);
+}
+```
+
+# D. Main Program
+
+```c
+int main(void){
+	HSE_SetSysClk(RCC_PLLMul_9);
+	//HSI_SetSysClk(RCC_PLLMul_9);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+	
+	NVIC_Config(); # Enable NVIC
+	GPIOA_Config(); # Enable GPIOA, Pull-up
+	GPIOB_Config();
+	EXTI_Config(); # Enable EXTI, Interruption
+	
+	while(1){
+	}
+}
+
+```
+
+# E. STM32CubeMX Configuration
+
+GPIO Configuration:
+![img_3.png](img_3.png)
+
+NVIC Configuration:
+![img_4.png](img_4.png)
+
+
+# F. Q&A
+
+What is the maximum sub-priority of the current system?
+
+--> 7, the range of `sub-priority` ranging from 0 to 7.
